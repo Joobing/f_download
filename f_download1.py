@@ -104,12 +104,12 @@ def parse(allPs, mainlength, lastlength):#SUGGESTED 250 , 450
             content=content+'\n'+allPs[i].text.strip()
             parsed=1
 
-        elif i+2 in range(len(allPs)) and len(allPs[i+1].text.replace(" ", "")) > lastlngth:
+        elif i+2 in range(len(allPs)) and len(allPs[i+1].text.replace(" ", "")) > lastlength:
             #print('\n\n'+allPs[i].text.strip(),'\n',str(i),':',str(len(allPs[i].text.replace(" ", ""))))
             content=content+'\n'+allPs[i].text.strip()               
             parsed=1
             
-        elif i+2 in range(len(allPs)) and len(allPs[i+2].text.replace(" ", "")) > lastlngth: 
+        elif i+2 in range(len(allPs)) and len(allPs[i+2].text.replace(" ", "")) > lastlength: 
             first=first+'\n'+allPs[i].text.strip()               
             parsed=1
 
@@ -161,7 +161,7 @@ def download(path):  #[<a>]:[href].text #<link,rel=canonical,[0]>
                 link_number.append(i)
                 if int(str(page).split()[1][1:4])==200:
                     URL.append("see: ['unknown_redir_page']"+'['+str(j)+'],number:'+str(j))
-                    content.append(parse(BeautifulSoup(page.text, 'html.parser').find_all('p')))
+                    content.append(parse(BeautifulSoup(page.text, 'html.parser').find_all('p'), 250, 450))
                     link.append(site[i])
     
                 else:
